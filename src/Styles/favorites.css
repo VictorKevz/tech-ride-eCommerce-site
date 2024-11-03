@@ -1,0 +1,39 @@
+.favorites-page-wrapper,.favorites-container,.favorites-empty-container{
+    width: 100%;
+    display: flex;
+   align-items: center;
+}
+/* .favorites-title{
+
+} */
+.favorites-container,.favorites-empty-container{
+    margin-top: 3%;
+    flex-direction: column;
+}
+.favorites-empty-container{
+    margin-top: 3%;
+}
+.empty-title{
+    font-size: clamp(2rem,3vw,3.5rem);
+}
+.empty-img{
+    margin-top: 3%;
+    scale: 2;
+}
+.fav-link{
+    margin-top: 5%;
+    padding: 0 4rem;
+    width: fit-content;
+    background-color: var(--blue-3);
+    height: 5.6rem;
+    border-radius: 2.8rem;
+    font-weight: 500;
+    font-size: 1.8rem;
+}
+
+.favorites-filled-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

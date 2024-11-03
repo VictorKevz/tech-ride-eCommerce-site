@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Quicksand:wght@300..700&display=swap");
+:root {
+  /* black from darkest */
+  --black-1: #171616;
+  --black-2: #2a2e35;
+  --black-3: #1e2023;
+  ---black-4:#2C2F31;
+
+  /* gray from darkest */
+  --gray-1: #545454;
+  --gray-2: #898e96;
+  --gray-3: #393D47;
+
+  /* Bright colors from lightest */
+  --white: #fff;
+  --blue-1: #88d4ec;
+  --blue-2: #4b8fa4;
+  --blue-3: #3292D2;
+  --gold:#c37714;
+  
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 10px;
+}
+body {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: "DM Sans", sans-serif;
+
+
+}
+h1,h2,h3,h4{
+  font-family: "Quicksand", sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: .3rem;
+
+}
+h1{
+  font-size: clamp(3rem,4vw,10rem);
+}

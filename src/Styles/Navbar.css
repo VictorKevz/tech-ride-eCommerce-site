@@ -1,0 +1,144 @@
+.header-wrapper{
+    width: 100%;
+    display: flex;
+    min-height: 8rem;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--gray-1);
+  
+    padding: 0 3.5%;
+    position: relative;
+    z-index: 10;
+}
+.nav-overlay{
+    display: none;
+}
+.logo-toggle-container{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.logo{
+    font-size: clamp(2.2rem,1.5vw,3rem);
+    font-family: "Quicksand", sans-serif;
+    letter-spacing: -0.08rem;
+    font-weight: 600;
+    min-width: fit-content;
+  
+}
+.nav-links-wrapper,.cart-favorites-login-wrapper{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7.5%;
+}
+.nav-link{
+    width: fit-content;
+}
+.cart-favorites-login-wrapper{
+    gap:0;
+}
+.menu-icon-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem 1rem;
+    color: var(--white);
+    flex-direction: column;
+    gap: .5rem;
+    font-size: 1.2rem;
+    text-transform: none;
+    position: relative;
+
+}
+.menu-icon{
+color: var(--blue-3);
+}
+.num{
+    position: absolute;
+    top: -.8rem;
+    right: .5rem;
+    color: var(--blue-3);
+    background: var(--white);
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.nav-toggle-btn,.mask,.menu-btn{
+    display: none;
+}
+
+/* Responsiveness */
+@media (max-width:1024px) {
+ .cart-favorites-login-wrapper{
+    display: none;
+ }
+ .cart-favorites-login-wrapper.open{
+    flex-direction: row;
+    display: flex;
+    position: absolute;
+    top: 100%;
+    right: 3.5%;
+    width: fit-content;
+    padding: 4rem 3rem;
+    background-color: var(--black-2);
+    margin-top: .5rem;
+    gap: 1.5rem;
+    border-radius: 1rem;
+ }
+
+ .menu-btn{
+    gap: .5rem;
+    color: var(--white);
+    display: flex;
+    border: 1px solid var(--blue-1);
+    padding: .6rem 1rem;
+    border-radius: .6rem;
+
+ }  
+}
+
+@media (max-width:770px) {
+.nav-toggle-btn{
+    display: flex;
+    color: var(--white);
+    border: 1px solid var(--blue-1);
+    padding: .6rem 1rem;
+    border-radius: .6rem;
+    
+}
+
+.nav-links-wrapper{
+    flex-direction: column;
+    position: absolute;
+    align-items: flex-start;
+    top: 100%;
+    margin-top: .5rem;
+    left: 3.5%;
+    width: fit-content;
+    padding: 4rem 3rem;
+    background-color: var(--black-2);
+    margin-top: .5rem;
+    gap: 2.5rem;
+    border-radius: .5rem;
+
+    display: none;
+
+
+}
+.nav-links-wrapper.open{
+    display: flex;
+}
+.nav-link{
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+}

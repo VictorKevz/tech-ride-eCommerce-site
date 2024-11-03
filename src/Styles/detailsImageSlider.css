@@ -1,0 +1,39 @@
+.image-slider-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.thumbnails-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.navigation-img-btn{
+    background-color: var(--gray-1);
+    width: fit-content;
+    border-radius: 1.2rem;
+    border: 2px solid var(--gray-2);
+
+}
+.navigation-img-btn.current{
+    border:2px solid var(--blue-3);
+}
+.navigation-img{
+    width: clamp(4rem,5vw,8rem);
+    height: clamp(4rem,5vw,8rem);
+    scale: 0.9;
+}
+.main-image-wrapper{
+    max-width: 550px;
+    width: 100%;
+    background-color: var(--black-2);
+    border: 2px solid var(--gray-1);
+
+    border-radius: 1.2rem;
+    padding: 3rem;
+
+}
+.main-img{
+    width: 100%;
+}

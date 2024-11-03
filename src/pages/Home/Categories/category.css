@@ -1,0 +1,96 @@
+.categories-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 3.5%;
+  margin-block: 8rem;
+}
+.title-category {
+  font-size: clamp(3rem, 4vw, 8rem);
+}
+.category-grid {
+  margin-top: 8vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 4rem;
+}
+.category-item {
+  min-height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 1.5rem;
+  position: relative;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+  overflow: hidden;
+
+}
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1.9rem;
+
+   
+}
+.motorcycle {
+  grid-row: span 2;
+}
+.computers {
+  grid-column: span 2;
+}
+.link-title-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 2rem;
+  padding: 0 3rem;
+}
+.category-title {
+  font-size: clamp(2rem, 2vw, 3.5rem);
+  font-weight: 400;
+}
+.category-link {
+  width: clamp(5rem, 4vw, 8rem);
+  height: clamp(5rem, 4vw, 8rem);
+  background-color: #00000094;
+  backdrop-filter: blur(3px);
+  border-radius: 50%;
+}
+.category-icon{
+  scale: 1.2;
+}
+
+
+
+@media (max-width: 1120px) {
+  .category-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .motorcycle {
+    grid-column: span 2;
+    grid-row: span 1;
+    background-position-y: -250%;
+  }
+  .smartphones,
+  .tablets {
+    grid-column: span 2;
+  }
+}
+@media (max-width: 720px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+}
