@@ -14,21 +14,22 @@
     margin-top: 3%;
 }
 .empty-title{
-    font-size: clamp(2rem,3vw,3.5rem);
+    font-size: clamp(2rem,1.5vw,3rem);
 }
 .empty-img{
     margin-top: 3%;
     scale: 2;
 }
-.fav-link{
-    margin-top: 5%;
+.empty-link{
+    margin-top: 5rem;
     padding: 0 4rem;
     width: fit-content;
     background-color: var(--blue-3);
-    height: 5.6rem;
-    border-radius: 2.8rem;
+    height: 4.6rem;
+    border-radius: 1.5rem;
     font-weight: 500;
     font-size: 1.8rem;
+    text-transform: none;
 }
 
 .favorites-filled-container{
@@ -36,4 +37,9 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+.empty-link:hover{
+background-color: inherit;
+border: 1px solid var(--blue-3);
+transition: .3s ease;
 }

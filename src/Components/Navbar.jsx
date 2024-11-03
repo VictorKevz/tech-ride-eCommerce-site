@@ -14,7 +14,7 @@ import "../Styles/Navbar.css";
 import { DataContext } from "../App";
 
 function Navbar() {
-  const { favoritesState,cartState } = useContext(DataContext);
+  const { favoritesState,cartState,dispatchCart } = useContext(DataContext);
   const [navOpen, setNav] = useState(false);
   const [menuOpen, setMenu] = useState(false);
   const navData = [
@@ -43,7 +43,7 @@ function Navbar() {
   const menuData = [
     {
       id: 0,
-      path: "/cart",
+      path: "#",
       text: "Cart",
       icon: ShoppingBag,
     },
@@ -61,9 +61,11 @@ function Navbar() {
     },
   ];
 
-  const handleMenu = () => {
+  const handleMenu = (currentText) => {
     setMenu(!menuOpen);
     setNav(false);
+    currentText === "Cart" ? dispatchCart({type:"TOGGLE_CART"}) : null
+
   };
   const handleNav = () => {
     setNav(!navOpen);
@@ -99,14 +101,14 @@ function Navbar() {
       {/* Section for far right icons */}
       <div className={`cart-favorites-login-wrapper ${menuOpen && "open"}`}>
         {menuData.map((item) => (
-          <Link key={item.id} to={item.path} className="menu-icon-link">
+          <Link key={item.id} to={item.path} className="menu-icon-link" onClick={()=> handleMenu(item.text)}>
             <item.icon fontSize="large" className="menu-icon" />
             {item.text}
             {favoritesState.length > 0 && item.text === "Favorites" && (
               <span className="num fav-nav">{favoritesState.length}</span>
             )}
-            {cartState.length > 0 && item.text === "Cart" && (
-              <span className="num cart-nav">{cartState.length}</span>
+            {cartState.cartItems.length > 0 && item.text === "Cart" && (
+              <span className="num cart-nav">{cartState.cartItems.length}</span>
             )}
           </Link>
         ))}

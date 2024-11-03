@@ -1,20 +1,24 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { DataContext } from "../../App";
 import "../../Styles/detailsPage.css";
 import DetailsImageSlider from "./DetailsImageSlider";
-import Tabs from "./Tabs"
+import Tabs from "./Tabs/Tabs";
 import {
   Add,
   Check,
   CheckCircleOutlineOutlined,
+  Facebook,
+  Instagram,
   Remove,
   ReviewsRounded,
+  Share,
   ShoppingBag,
   Star,
+  X,
 } from "@mui/icons-material";
 function DetailsPage() {
-  const[quantity,setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(1);
   const { category, productName } = useParams();
   const { stateData, cartState, dispatchCart } = useContext(DataContext);
 
@@ -28,11 +32,11 @@ function DetailsPage() {
   const weightUnit = category === "smartphones" ? "gramms" : "Kgs";
 
   const decrementQuantity = () => {
-    setQuantity(prevQty => Math.max(1, prevQty - 1))
-  }
+    setQuantity((prevQty) => Math.max(1, prevQty - 1));
+  };
   const incrementQuantity = () => {
-    setQuantity(prevQty => prevQty + 1)
-  }
+    setQuantity((prevQty) => prevQty + 1);
+  };
   return (
     <section className="details-page-wrapper">
       <header className="details-page-header">
@@ -78,22 +82,23 @@ function DetailsPage() {
               {productObj?.stock} In Stock
             </div>
           </div>
-          <p className="product-price details">${productObj?.price}</p>
+          <p className="product-price details">${productObj?.price.toLocaleString('en-US')}</p>
           <span className="price-caption">Price per item, Includes VAT</span>
           <div className="qty-addToCart-buyNow-wrapper">
             <div className="qty-addToCart-wrapper">
               <div className="qty-btn-wrapper">
                 <button
-                 type="button" 
-                 className="qty-btn"
-                 onClick={decrementQuantity}
-                 >
+                  type="button"
+                  className="qty-btn"
+                  onClick={decrementQuantity}
+                >
                   <Remove fontSize="large" />
                 </button>
                 <span className="qty-num">{quantity}</span>
-                <button type="button" 
-                className="qty-btn"
-                onClick={incrementQuantity}
+                <button
+                  type="button"
+                  className="qty-btn"
+                  onClick={incrementQuantity}
                 >
                   <Add fontSize="large" />
                 </button>
@@ -104,9 +109,9 @@ function DetailsPage() {
                 onClick={() => {
                   dispatchCart({
                     type: "ADD_TO_CART",
-                    payload: { productObj,quantity }
+                    payload: { productObj, quantity },
                   });
-                  setQuantity(1)
+                  setQuantity(1);
                 }}
               >
                 <ShoppingBag fontSize="large" /> Add To Cart
@@ -148,9 +153,29 @@ function DetailsPage() {
               {`Brand: ${productObj?.brand} `}
             </li>
           </ul>
+          <ul className="share-socials-wrapper">
+            <li className="share-item">
+              <h3 className="share-title">Share: <Share fontSize="large"/></h3>
+            </li>
+            <li className="share-item">
+              <a href="https://www.x.com" target="_blank" className="share-link">
+                <X fontSize="large"/>
+              </a>
+            </li>
+            <li className="share-item">
+              <a href="https://www.facebook.com" target="_blank" className="share-link">
+                <Facebook fontSize="large"/>
+              </a>
+            </li>
+            <li className="share-item">
+              <a href="https://www.instagram.com" target="_blank" className="share-link">
+                <Instagram fontSize="large"/>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-      <Tabs productObj={productObj}/>
+      <Tabs productObj={productObj} category={category} />
     </section>
   );
 }

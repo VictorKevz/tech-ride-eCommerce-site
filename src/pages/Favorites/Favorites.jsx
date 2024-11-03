@@ -7,7 +7,6 @@ import "../../Styles/favorites.css";
 import CategoryProductCard from "../../Components/CategoryProductCard";
 function Favorites() {
   const { favoritesState } = useContext(DataContext);
-  // const categoryName = cartState.map((item) => categories[item.category])
   return (
     <section className="favorites-page-wrapper">
       <div className="favorites-container">
@@ -21,7 +20,7 @@ function Favorites() {
               No products added yet! All the products you like will appear here!
             </p>
             <img src={empty} alt="Empty illustration" className="empty-img" />
-            <Link className="fav-link" to="/">
+            <Link className="empty-link" to="/">
               Continue Shopping
             </Link>
           </article>

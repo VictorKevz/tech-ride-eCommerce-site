@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../../Styles/tabs.css";
-import illustration from "../../assets/images/illustration.webp";
-import profile from "../../assets/images/profile.png";
+import "../../../Styles/tabs.css";
+import illustration from "../../../assets/images/illustration.webp";
+import profile from "../../../assets/images/profile.png";
 import { Star } from "@mui/icons-material";
 
 function Tabs({ productObj }) {
@@ -42,8 +42,8 @@ function Tabs({ productObj }) {
         {tab === "Details" && (
           <div className="details-tab">
             <article className="tab-text-wrapper">
-              <h2 className="tab-title">{productObj.title}</h2>
-              <p className="tab-parag">{productObj.description}</p>
+              <h2 className="tab-title">{productObj?.title}</h2>
+              <p className="tab-parag">{productObj?.description}</p>
               <div className="dummy-holder">
                 <h3 className="dummy-title">Sub Heading</h3>
                 <p className="tab-parag">

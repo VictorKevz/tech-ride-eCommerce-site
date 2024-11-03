@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import CategoryPage from "./pages/Category/CategoryPage";
 import DetailsPage from "./pages/Details/DetailsPage";
 import Favorites from "./pages/Favorites/Favorites";
+import Cart from "./Components/Cart";
 
 export const DataContext = createContext();
 
@@ -36,21 +37,75 @@ const favoritesReducer = (state, action) => {
 };
 
 const cartReducer = (state, action) => {
+  
+ // Find index of item to be updated using its id
+  const getMatchedProductIndex = (id) => {
+      return state.cartItems.findIndex((item)=> item.id === id)
+  }
+
   switch (action.type) {
+    
     case "ADD_TO_CART":
       const { productObj, quantity } = action.payload;
 
-      // Find index of item to be updated using its id
+     
 
-      const itemIndex = state.findIndex((item) => item.id === productObj.id);
-
+      const itemIndex = getMatchedProductIndex(productObj.id) 
+      
+      let updatedItems;
       if (itemIndex >= 0) {
-        return state.map((item, index) =>
-          itemIndex === index ? { ...item, quantity } : item
+        updatedItems = state.cartItems.map((item, index) =>
+          itemIndex === index
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
         );
       } else {
-        return [...state, { ...productObj, quantity }];
+        updatedItems = [...state.cartItems, { ...productObj, quantity }];
       }
+      return {
+        ...state,
+        cartItems: updatedItems,
+        isCartOpen: true,
+      };
+    case "TOGGLE_CART":
+      return { ...state, isCartOpen: !state.isCartOpen };
+
+    case "INCREMENT_QUANTITY":
+      
+      const incrementIndex = getMatchedProductIndex(action.payload.id)
+      if (incrementIndex >= 0) {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((item, index) =>
+            incrementIndex === index
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ),
+        };
+      } else {
+        return state;
+      }
+    case "DECREMENT_QUANTITY":
+      
+      const decrementIndex = getMatchedProductIndex(action.payload.id)
+      if (decrementIndex >= 0) {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((item, index) =>
+            decrementIndex === index
+              ? { ...item, quantity: Math.max(1, item.quantity - 1) }
+              : item
+          ),
+        };
+      } else {
+        return state;
+      }
+    case "DELETE_ITEM":  
+    const {id} = action.payload 
+    return {
+      ...state,
+      cartItems: state.cartItems.filter((item)=> item.id !== id)
+    }
 
     default:
       return state;
@@ -62,7 +117,7 @@ function App() {
   const dataInitial =
     savedData !== null
       ? JSON.parse(savedData)
-      : { laptops: [], smartphones: [], tablets: [], motorcycle: [] };
+      : { laptops: [], vehicle: [], tablets: [], motorcycle: [] };
   const [stateData, dispatchData] = useReducer(dataReducer, dataInitial);
 
   //..............FAVORITES DECLARATION..............
@@ -76,7 +131,10 @@ function App() {
 
   //..............CART DECLARATION..............
   const savedCart = localStorage.getItem("cart");
-  const cartInitial = savedCart !== null ? JSON.parse(savedCart) : [];
+  const cartInitial = {
+    cartItems: savedCart !== null ? JSON.parse(savedCart) : [],
+    isCartOpen: false,
+  };
   const [cartState, dispatchCart] = useReducer(cartReducer, cartInitial);
 
   const categories = ["laptops", "vehicle", "motorcycle", "tablets"];
@@ -105,14 +163,18 @@ function App() {
   };
 
   useEffect(() => {
-    categories.forEach((category) => fetchCategory(category));
+    categories.forEach((category) => {
+      if (!stateData[category] || stateData[category].length === 0) {
+        fetchCategory(category);
+      }
+    });
   }, []);
 
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(stateData));
     localStorage.setItem("favorites", JSON.stringify(favoritesState));
-    localStorage.setItem("cart", JSON.stringify(cartState));
-  }, [stateData, favoritesState, cartState]);
+    localStorage.setItem("cart", JSON.stringify(cartState.cartItems));
+  }, [stateData, favoritesState, cartState.cartItems]);
   return (
     <DataContext.Provider
       value={{
@@ -131,12 +193,12 @@ function App() {
       <main className={`outer-container`}>
         <Navbar />
         <Routes>
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/:category" element={<CategoryPage />} />
           <Route path="/:category/:productName" element={<DetailsPage />} />
           <Route path="/favorites" element={<Favorites />} />
-
         </Routes>
+        {cartState.isCartOpen && <Cart />}
       </main>
     </DataContext.Provider>
   );
