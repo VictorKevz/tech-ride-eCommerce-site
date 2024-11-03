@@ -1,18 +1,12 @@
 import motorcycle from "../../../assets/images/home/carousel/motorcycle.svg";
 import computers from "../../../assets/images/home/carousel/computers.svg";
-import smartphones from "../../../assets/images/home/carousel/smartphones.svg";
+import car from "../../../assets/images/home/carousel/cars.svg";
 import tablets from "../../../assets/images/home/carousel/tablets.svg";
 
 export const carouselData = [
+    
     {
         id: 0,
-        headingText: "Computers",
-        parag: "Find high-performance computers for work and play.",
-        imgSrc: computers,
-        path: "/laptops"
-    },
-    {
-        id: 1,
         headingText: "Motorcycles",
         parag: "Explore powerful motorcycles for every adventure.",
         imgSrc: motorcycle,
@@ -20,10 +14,10 @@ export const carouselData = [
     },
     
     {
-        id: 2,
-        headingText: "Smartphones",
+        id: 1,
+        headingText: "Super Cars",
         parag: "Shop Cars with top-notch features and design.",
-        imgSrc: smartphones,
+        imgSrc: car,
         path: "/vehicle"
     },
     {
@@ -32,5 +26,12 @@ export const carouselData = [
         parag: "Discover tablets for work, creativity, and entertainment.",
         imgSrc: tablets,
         path: "/tablets"
-    }
+    },
+    {
+        id: 2,
+        headingText: "Computers",
+        parag: "Find high-performance computers for work and play.",
+        imgSrc: computers,
+        path: "/laptops"
+    },
 ];

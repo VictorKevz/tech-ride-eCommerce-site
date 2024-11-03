@@ -50,7 +50,7 @@ p {
   font-size: 1.8rem;
   font-weight: 300;
   line-height: 1.65;
-  color: var(--gray-2);
+  color: var(--white-2);
 }
 fieldset {
   border: none;

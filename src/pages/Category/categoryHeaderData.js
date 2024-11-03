@@ -1,5 +1,5 @@
 import motorcycles from "../../assets/images/categories/motorcycle.svg"
-import smartphones from "../../assets/images/categories/smartphone.svg"
+import car from "../../assets/images/categories/car.svg"
 import tablets from "../../assets/images/categories/tablets.svg"
 import laptops from "../../assets/images/categories/computers.svg"
 
@@ -10,8 +10,8 @@ export const categoryHeaderData = {
       parag: "Explore our selection of motorcycles, from sport bikes to adventure models.",
     },
     vehicle: {
-      bgImage: smartphones,
-      heading: "Cars",
+      bgImage: car,
+      heading: "Super Cars",
       parag: "Discover the latest smartphones with cutting-edge technology.",
     },
     tablets: {
