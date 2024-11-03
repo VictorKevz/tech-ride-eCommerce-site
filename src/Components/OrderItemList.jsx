@@ -18,7 +18,7 @@ function OrderItemList() {
           <div key={product.id} className="order-item">
             <div className="thumbnail-qty-wrapper">
               <img
-                src={product.thumbnail}
+                src={product?.images[0]}
                 alt={`Thumbnail of ${product.title}`}
                 className="thumbnail"
               />

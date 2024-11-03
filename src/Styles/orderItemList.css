@@ -26,7 +26,7 @@
 }
 .thumbnail{
     width: clamp(6rem,8vw,9rem);
-    height: auto;
+    height: clamp(6rem,8vw,9rem);
     border-radius: .64rem;
     background-color: var(--gray-2);
     
