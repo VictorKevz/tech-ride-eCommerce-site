@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { DataContext } from "../App";
-import { Add, Delete, Remove } from "@mui/icons-material";
+import { Add, Delete, OpenInNew, Remove } from "@mui/icons-material";
 import "../Styles/orderItemList.css";
+import { Link } from "react-router-dom";
 
 function OrderItemList() {
   const { cartState, dispatchCart } = useContext(DataContext);
@@ -17,11 +18,18 @@ function OrderItemList() {
         return (
           <div key={product.id} className="order-item">
             <div className="thumbnail-qty-wrapper">
-              <img
-                src={product?.images[0]}
-                alt={`Thumbnail of ${product.title}`}
-                className="thumbnail"
-              />
+              <Link
+                to={`/${product?.category}/${product?.title}`}
+                onClick={()=>dispatchCart({type:"TOGGLE_CART",payload:{cartOpen:false}})}
+                className="thumbnail-link"
+              >
+                <img
+                  src={product?.images[0]}
+                  alt={`Thumbnail of ${product.title}`}
+                  className="thumbnail-img"
+                />
+                <OpenInNew fontSize="large" className="link-icon" />
+              </Link>
               <div className="text-qty-wrapper">
                 <h2 className="cart-item-title">{productTitle}</h2>
                 <p className="brand cart">
@@ -57,13 +65,16 @@ function OrderItemList() {
               </div>
             </div>
             <div className="price-delete-wrapper">
-              <button type="button" className="delete-btn" 
-              onClick={() =>
-                      dispatchCart({
-                        type: "DELETE_ITEM",
-                        payload: { id: product?.id },
-                      })
-                    }>
+              <button
+                type="button"
+                className="delete-btn"
+                onClick={() =>
+                  dispatchCart({
+                    type: "DELETE_ITEM",
+                    payload: { id: product?.id },
+                  })
+                }
+              >
                 <Delete fontSize="large" />
               </button>
               <p className="cart-price">

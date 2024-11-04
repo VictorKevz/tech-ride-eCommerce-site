@@ -1,0 +1,28 @@
+.checkout-form-wrapper{
+    width: 100%;
+    margin-top: 4rem;
+}
+.personal-wrapper{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 3rem;
+}
+.field{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.personal-label{
+    padding-bottom: .8rem;
+    margin-left: .5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+.personal-input{
+    height: 5.6rem;
+    border: 1px solid var(--gray-2);
+    background-color: inherit;
+    border-radius: 1.2rem;
+    padding-left: 2rem;
+}

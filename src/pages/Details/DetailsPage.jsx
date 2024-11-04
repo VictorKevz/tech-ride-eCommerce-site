@@ -109,7 +109,7 @@ function DetailsPage() {
                 onClick={() => {
                   dispatchCart({
                     type: "ADD_TO_CART",
-                    payload: { productObj, quantity },
+                    payload: { productObj, quantity,openCart:true },
                   });
                   setQuantity(1);
                 }}
@@ -117,9 +117,15 @@ function DetailsPage() {
                 <ShoppingBag fontSize="large" /> Add To Cart
               </button>
             </div>
-            <button type="button" className="buyNow-btn">
+            <Link to="/checkout" className="buyNow-btn" onClick={() => {
+                  dispatchCart({
+                    type: "ADD_TO_CART",
+                    payload: { productObj, quantity,openCart:false },
+                  });
+                  setQuantity(1);
+                }}>
               Buy Now
-            </button>
+            </Link>
           </div>
           <ul className="mini-specs-wrapper">
             <li className="spec">

@@ -8,6 +8,7 @@ import CategoryPage from "./pages/Category/CategoryPage";
 import DetailsPage from "./pages/Details/DetailsPage";
 import Favorites from "./pages/Favorites/Favorites";
 import Cart from "./Components/Cart";
+import Checkout from "./pages/Checkout/Checkout";
 
 export const DataContext = createContext();
 
@@ -37,21 +38,17 @@ const favoritesReducer = (state, action) => {
 };
 
 const cartReducer = (state, action) => {
-  
- // Find index of item to be updated using its id
+  // Find index of item to be updated using its id
   const getMatchedProductIndex = (id) => {
-      return state.cartItems.findIndex((item)=> item.id === id)
-  }
+    return state.cartItems.findIndex((item) => item.id === id);
+  };
 
   switch (action.type) {
-    
     case "ADD_TO_CART":
-      const { productObj, quantity } = action.payload;
+      const { productObj, quantity,openCart } = action.payload;
 
-     
+      const itemIndex = getMatchedProductIndex(productObj.id);
 
-      const itemIndex = getMatchedProductIndex(productObj.id) 
-      
       let updatedItems;
       if (itemIndex >= 0) {
         updatedItems = state.cartItems.map((item, index) =>
@@ -65,14 +62,14 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         cartItems: updatedItems,
-        isCartOpen: true,
+        isCartOpen: openCart,
       };
     case "TOGGLE_CART":
-      return { ...state, isCartOpen: !state.isCartOpen };
+      const{cartOpen} = action.payload;
+      return { ...state, isCartOpen: cartOpen };
 
     case "INCREMENT_QUANTITY":
-      
-      const incrementIndex = getMatchedProductIndex(action.payload.id)
+      const incrementIndex = getMatchedProductIndex(action.payload.id);
       if (incrementIndex >= 0) {
         return {
           ...state,
@@ -86,8 +83,7 @@ const cartReducer = (state, action) => {
         return state;
       }
     case "DECREMENT_QUANTITY":
-      
-      const decrementIndex = getMatchedProductIndex(action.payload.id)
+      const decrementIndex = getMatchedProductIndex(action.payload.id);
       if (decrementIndex >= 0) {
         return {
           ...state,
@@ -100,12 +96,12 @@ const cartReducer = (state, action) => {
       } else {
         return state;
       }
-    case "DELETE_ITEM":  
-    const {id} = action.payload 
-    return {
-      ...state,
-      cartItems: state.cartItems.filter((item)=> item.id !== id)
-    }
+    case "DELETE_ITEM":
+      const { id } = action.payload;
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((item) => item.id !== id),
+      };
 
     default:
       return state;
@@ -134,6 +130,14 @@ function App() {
   const cartInitial = {
     cartItems: savedCart !== null ? JSON.parse(savedCart) : [],
     isCartOpen: false,
+    personalDetails:{
+      firstName:"",
+      lastName:"",
+      email:"",
+      phone:""
+    },
+    delivery:"Same-day",
+    payment:"apple-pay"
   };
   const [cartState, dispatchCart] = useReducer(cartReducer, cartInitial);
 
@@ -197,6 +201,7 @@ function App() {
           <Route path="/:category" element={<CategoryPage />} />
           <Route path="/:category/:productName" element={<DetailsPage />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
         {cartState.isCartOpen && <Cart />}
       </main>

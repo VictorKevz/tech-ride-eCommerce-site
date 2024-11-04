@@ -64,7 +64,7 @@ function Navbar() {
   const handleMenu = (currentText) => {
     setMenu(!menuOpen);
     setNav(false);
-    currentText === "Cart" ? dispatchCart({type:"TOGGLE_CART"}) : null
+    currentText === "Cart" ? dispatchCart({type:"TOGGLE_CART",payload:{cartOpen:true}}) : null
 
   };
   const handleNav = () => {
