@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { DataContext } from "../../App";
 import "../../Styles/detailsPage.css";
-import DetailsImageSlider from "./DetailsImageSlider";
+import DetailsImageSlider from "../../Components/DetailsImageSlider";
 import Tabs from "./Tabs/Tabs";
 import {
   Add,
@@ -17,6 +17,7 @@ import {
   Star,
   X,
 } from "@mui/icons-material";
+import LightBox from "../../Components/LightBox";
 function DetailsPage() {
   const [quantity, setQuantity] = useState(1);
   const { category, productName } = useParams();
@@ -25,7 +26,7 @@ function DetailsPage() {
   const productObj = stateData?.[category].find(
     (product) => product.title === productName
   );
-  const images = productObj ? productObj?.images : [];
+  const images = productObj ? productObj?.images.slice(0, 3) : [];
 
   const rating = Math.round(productObj?.rating);
   const unit = category === "motorcycle" ? "Inches" : "mm";
@@ -82,6 +83,7 @@ function DetailsPage() {
               {productObj?.stock} In Stock
             </div>
           </div>
+          
           <p className="product-price details">${productObj?.price.toLocaleString('en-US')}</p>
           <span className="price-caption">Price per item, Includes VAT</span>
           <div className="qty-addToCart-buyNow-wrapper">
@@ -182,6 +184,8 @@ function DetailsPage() {
         </div>
       </div>
       <Tabs productObj={productObj} category={category} />
+      {stateData?.isLightBoxOpen && <LightBox images={images}/> }
+      
     </section>
   );
 }

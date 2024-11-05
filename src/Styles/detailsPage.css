@@ -78,6 +78,13 @@
 .stock-wrapper {
   color: #77b781;
 }
+.price-like-wrapper{
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .product-price.details {
   margin-top: 2rem;
 }

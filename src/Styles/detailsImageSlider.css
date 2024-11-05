@@ -1,39 +1,83 @@
-.image-slider-wrapper{
-    display: flex;
-    align-items: center;
-    gap: 4rem;
+.image-slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
 }
 
-.thumbnails-wrapper{
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+.thumbnails-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
-.navigation-img-btn{
-    background-color: var(--gray-1);
-    width: fit-content;
-    border-radius: 1.2rem;
-    border: 2px solid var(--gray-2);
+.navigation-img-btn {
+  background-color: var(--gray-1);
+  width: fit-content;
+  border-radius: 1.2rem;
+  border: 2px solid var(--gray-2);
+}
+.navigation-img-btn.current {
+  border: 2px solid var(--blue-3);
+}
+.navigation-img {
+  width: clamp(6rem, 5vw, 10rem);
+  height: clamp(6rem, 5vw, 10rem);
+  scale: 0.9;
+}
+.main-image-wrapper {
+  max-width: 550px;
+  width: 100%;
+  background-color: var(--black-2);
+  border: 2px solid var(--gray-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.2rem;
+  padding: 3rem;
+  position: relative;
+}
+.add-sign{
+width: 4rem;
+height: 4rem;
+border-radius: 50%;
+color: var(--gray-2);
+border: 1px solid var(--gray-1);
+display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  cursor: zoom-in;
 
 }
-.navigation-img-btn.current{
-    border:2px solid var(--blue-3);
+.main-img {
+  width: 100%;
+  cursor: zoom-in;
 }
-.navigation-img{
-    width: clamp(4rem,5vw,8rem);
-    height: clamp(4rem,5vw,8rem);
-    scale: 0.9;
-}
-.main-image-wrapper{
-    max-width: 550px;
+.prev-next-btn-wrapper{
     width: 100%;
-    background-color: var(--black-2);
-    border: 2px solid var(--gray-1);
-
-    border-radius: 1.2rem;
-    padding: 3rem;
-
+    justify-content: space-between;
+    position: absolute;
+    z-index: 20;
+    background-color: red;
 }
-.main-img{
-    width: 100%;
+.navigation-btn {
+  background-color: var(--gray-2);
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  position: absolute;
+  color: white;
+}
+.prev {
+  left: -2.5rem;
+}
+.next {
+  right: -2.5rem;
+}
+
+.navigation-btn:hover{
+    background-color: var(--blue-3);
+    transition: .3s ease-in-out;
 }

@@ -1,0 +1,61 @@
+.orderConfirmation-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(38, 40, 42, 0.687);
+    backdrop-filter: blur(5px);    
+    z-index: 100;
+}
+.orderConfirmation-container{
+    max-width: 550px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--black-3);
+    box-shadow: 0 0 1rem rgba(27, 111, 207, 0.131);
+    padding: 4rem 3rem;
+    border-radius: 1.2rem;
+    text-align: center;
+}
+.success-icon{
+    width: 8rem;
+    height: auto;
+margin-bottom: 3rem;
+}
+.confirmation-title{
+    font-size: clamp(2rem,4vw,3.5rem);
+    margin-bottom: .5rem;
+}
+.order-num{
+    color: var(--blue-2);
+    font-weight: 800;
+}
+.confirmation-parag{
+    margin-top: 2rem;
+}
+.confirm-email{
+    color: white;
+    font-weight: 800;
+
+}
+.link{
+    width: 90%;
+    height: 4.6rem;
+    background-color: var(--blue-3);
+    border-radius: 1.2rem;
+    margin-top: 3rem;
+    font-weight: 700;
+}
+.link:hover{
+    background-color: inherit;
+    border: 1px solid var(--blue-3);
+    transition: .3s ease-in-out;
+}

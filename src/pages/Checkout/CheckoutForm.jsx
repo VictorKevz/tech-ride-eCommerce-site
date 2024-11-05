@@ -33,7 +33,7 @@ function CheckoutForm() {
     const handleSubmit = (e) => {
       e.preventDefault();
       if (handleValidation()) {
-        alert("Successful!");
+        dispatchCart({type:"SHOW_ORDER_CONFIRMATION"})
       } else {
         
         return;
@@ -46,7 +46,11 @@ function CheckoutForm() {
       <Delivery />
       <Payment/>
       <div className="submit-btn-wrapper">
-      <button type="submit" className="submit-btn">
+      <button 
+      type="submit" 
+      className="submit-btn"
+      
+      >
         Place Order
       </button>
       </div>

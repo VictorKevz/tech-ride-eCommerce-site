@@ -4,6 +4,7 @@ import Categories from "./Categories/Categories";
 
 import "../../Styles/Home.css";
 import BestDeals from "./BestDeals/BestDeals";
+import FAQs from "./FAQs/FAQs";
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
       <Carousel />
      <Categories/>
      <BestDeals/>
+     <FAQs/>
     </section>
   );
 }

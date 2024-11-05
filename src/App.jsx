@@ -9,6 +9,7 @@ import DetailsPage from "./pages/Details/DetailsPage";
 import Favorites from "./pages/Favorites/Favorites";
 import Cart from "./Components/Cart";
 import Checkout from "./pages/Checkout/Checkout";
+import OrderConfirmation from "./Components/OrderConfirmation";
 
 export const DataContext = createContext();
 
@@ -19,6 +20,16 @@ const dataReducer = (state, action) => {
         ...state,
         [action.payload.category]: action.payload.data,
       };
+     case "OPEN_LIGHTBOX":
+      return {
+        ...state,
+        isLightBoxOpen : true
+      }
+      case "CLOSE_LIGHTBOX":
+      return {
+        ...state,
+        isLightBoxOpen : false
+      }
     default:
       return state;
   }
@@ -115,19 +126,19 @@ const cartReducer = (state, action) => {
           [name]: true,
         },
       };
-      case "UPDATE_DELIVERY":
-        return {
-          ...state,
-          delivery: {
-            method: action.payload.value,
-            cost:action.payload.cost
-          },
-        };
-        case "UPDATE_PAYMENT":
-        return {
-          ...state,
-          payment: action.payload.value,
-        };
+    case "UPDATE_DELIVERY":
+      return {
+        ...state,
+        delivery: {
+          method: action.payload.value,
+          cost: action.payload.cost,
+        },
+      };
+    case "UPDATE_PAYMENT":
+      return {
+        ...state,
+        payment: action.payload.value,
+      };
 
     case "SUBMIT_FORM":
       const { isValid } = action.payload;
@@ -136,6 +147,36 @@ const cartReducer = (state, action) => {
         isValid: {
           ...isValid,
         },
+      };
+    case "SHOW_ORDER_CONFIRMATION":
+      return {
+        ...state,
+        confirmOrder: true,
+        orderNumber: state.orderNumber + 10,
+      };
+    case "CLEAR_CART":
+      return {
+        ...state,
+        cartItems: [],
+        isCartOpen: false,
+        personalDetails: {
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+        },
+        isValid: {
+          firstName: true,
+          lastName: true,
+          email: true,
+          phone: true,
+        },
+        delivery: {
+          method: "standard",
+          cost: 0,
+        },
+        payment: "apple-pay",
+        confirmOrder: false,
       };
     default:
       return state;
@@ -147,7 +188,14 @@ function App() {
   const dataInitial =
     savedData !== null
       ? JSON.parse(savedData)
-      : { laptops: [], vehicle: [], tablets: [], motorcycle: [] };
+      : {
+          laptops: [],
+          vehicle: [],
+          tablets: [],
+          motorcycle: [],
+          isLightBoxOpen: false,
+        };
+
   const [stateData, dispatchData] = useReducer(dataReducer, dataInitial);
 
   //..............FAVORITES DECLARATION..............
@@ -177,12 +225,12 @@ function App() {
       phone: true,
     },
     delivery: {
-      method:"standard",
-      cost:0
+      method: "standard",
+      cost: 0,
     },
     payment: "apple-pay",
-    confirmOrder:false,
-    
+    confirmOrder: false,
+    orderNumber: 100,
   };
   const [cartState, dispatchCart] = useReducer(cartReducer, cartInitial);
 
@@ -249,6 +297,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
         {cartState.isCartOpen && <Cart />}
+        {cartState.confirmOrder && <OrderConfirmation />}
       </main>
     </DataContext.Provider>
   );
