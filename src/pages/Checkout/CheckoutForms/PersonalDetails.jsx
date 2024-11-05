@@ -1,9 +1,22 @@
 import React, { useContext } from "react";
 import { DataContext } from "../../../App";
-import "../CheckoutForms/personalDetails.css"
+import "../CheckoutForms/checkoutStyles/personalDetails.css";
 
 function PersonalDetails() {
-  const { cartState } = useContext(DataContext);
+  const { cartState, dispatchCart } = useContext(DataContext);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    dispatchCart({
+      type: "UPDATE_PERSONAL_DETAILS",
+      payload: {
+        name,
+        value,
+      },
+    });
+  };
+
   const personalData = [
     {
       id: 0,
@@ -35,34 +48,32 @@ function PersonalDetails() {
     },
   ];
 
-  const handleChange = (e) => {
-    e.preventDefault()
-  }
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
   return (
-    <form className="checkout-form-wrapper" onSubmit={handleSubmit}>
-      <section className="personal-wrapper">
-        {personalData.map((field) => {
-          return (
-            <fieldset key={field.id} className="field personal">
-              <label className="personal-label" htmlFor={field.id}>{field.label}</label>
-              <input
-                type="text"
-                value={field.value}
-                name={field.name}
-                id={field.id}
-                className={`personal-input`}
-                onChange={handleChange}
-                placeholder={field.placeholder}
-              />
-            </fieldset>
-          );
-        })}
-      </section>
-      <button type="submit" className="buyNow-btn submit-btn">Place Order</button>
-    </form>
+    <section className="personal-wrapper">
+      {personalData.map((field) => {
+        return (
+          <fieldset key={field.id} className="field personal">
+            <label className="personal-label" htmlFor={field.id}>
+              {field.label}
+            </label>
+            <input
+              type="text"
+              value={field.value}
+              name={field.name}
+              id={field.id}
+              className={`personal-input`}
+              onChange={handleChange}
+              placeholder={field.placeholder}
+            />
+            {!cartState.isValid[field.name] && (
+              <span className="error-message">
+                Please Provide a valid {field.label}
+              </span>
+            )}
+          </fieldset>
+        );
+      })}
+    </section>
   );
 }
 

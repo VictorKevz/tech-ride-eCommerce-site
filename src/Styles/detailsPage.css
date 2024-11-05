@@ -182,7 +182,9 @@
 .buyNow-btn::before,
 .share-link:before,
 .qty-btn:before,
-.thumbnail-link::before {
+.thumbnail-link::before,
+.delivery-label::before,
+.submit-btn::before {
   content: "";
   position: absolute;
   width: 0;
@@ -200,7 +202,9 @@
 .buyNow-btn:hover::before,
 .share-link:hover::before,
 .qty-btn:hover::before,
-.thumbnail-link:hover:before {
+.thumbnail-link:hover:before,
+.delivery-label:hover::before,
+.submit-btn:hover::before {
   transition: 0.3s ease-in-out;
   width: 100%;
   height: 100%;

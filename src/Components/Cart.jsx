@@ -43,11 +43,7 @@ function Cart() {
         {cartState?.cartItems.length > 0 && (
           <div className="cart-filled">
             <OrderItemList />
-            <div className="checkout-btn-wrapper">
-            <Link to="/checkout" className="buyNow-btn cart" onClick={()=> dispatchCart({type:"TOGGLE_CART",payload:{cartOpen:false}})} >
-              Proceed to Checkout
-            </Link>
-            </div>
+            
           </div>
         )}
       </section>

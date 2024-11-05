@@ -7,6 +7,7 @@
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap: 3rem;
+    margin-top: 3rem;
 }
 .field{
     width: 100%;
@@ -25,4 +26,17 @@
     background-color: inherit;
     border-radius: 1.2rem;
     padding-left: 2rem;
+    color: var(--gray-2);
+    font-size: 1.6rem;
+}
+.error-message{
+    font-size: 1.3rem;
+    color: #dd8181;
+    font-weight: 500;
+    margin-top: .8rem;
+    padding-left: 2rem;
+}
+.personal-input:hover,.personal-input:focus{
+    outline: none;
+    border: 1px solid var(--blue-3);
 }

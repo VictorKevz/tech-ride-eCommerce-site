@@ -7,6 +7,17 @@ import { Link } from "react-router-dom";
 function OrderItemList() {
   const { cartState, dispatchCart } = useContext(DataContext);
 
+  const total = cartState?.cartItems.reduce((acc, item) => {
+    return acc + item.price * item.quantity;
+  }, 0);
+
+  const totalQty = cartState?.cartItems.reduce((acc, item) => {
+    return acc + item.quantity;
+  }, 0);
+
+  const totalFreight = totalQty * cartState.delivery.cost;
+
+  const grandTotal = total + totalFreight
   return (
     <section className="order-items-wrapper">
       {cartState.cartItems.map((product) => {
@@ -20,7 +31,12 @@ function OrderItemList() {
             <div className="thumbnail-qty-wrapper">
               <Link
                 to={`/${product?.category}/${product?.title}`}
-                onClick={()=>dispatchCart({type:"TOGGLE_CART",payload:{cartOpen:false}})}
+                onClick={() =>
+                  dispatchCart({
+                    type: "TOGGLE_CART",
+                    payload: { cartOpen: false },
+                  })
+                }
                 className="thumbnail-link"
               >
                 <img
@@ -84,6 +100,43 @@ function OrderItemList() {
           </div>
         );
       })}
+      <ul className="order-cost-summary">
+      <li className="service-item">
+          <p className="service">Items-Total</p>
+          <span className="value">${total?.toLocaleString("en-US")}</span>
+        </li>
+        <li className="service-item">
+          <p className="service">
+            Delivery ({cartState?.delivery?.method}) (
+            {cartState?.delivery?.method === "standard"
+              ? "FREE"
+              : `$${cartState?.delivery?.cost} / item`}
+            )
+          </p>
+          <span className="value">${totalFreight}</span>
+        </li>
+       
+        <li className="service-item">
+          <p className="service total">Total (Delivery inclussive)</p>
+          <span className="value total">${grandTotal?.toLocaleString("en-US")}</span>
+        </li>
+        {cartState.isCartOpen && (
+          <div className="checkout-btn-wrapper">
+            <Link
+              to="/checkout"
+              className="buyNow-btn cart"
+              onClick={() =>
+                dispatchCart({
+                  type: "TOGGLE_CART",
+                  payload: { cartOpen: false },
+                })
+              }
+            >
+              Proceed to Checkout
+            </Link>
+          </div>
+        )}
+      </ul>
     </section>
   );
 }

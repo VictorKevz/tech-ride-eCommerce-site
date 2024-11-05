@@ -1,0 +1,76 @@
+.checkout-methods-wrapper{
+width: 100%;
+display: flex;
+flex-direction: column;
+}
+.delivery-wrapper{
+    width: 100%;
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    gap: 3rem;
+}
+.form-title{
+    grid-column: span 3;
+    font-size: clamp(1.8rem,2vw,2.5rem);
+    font-weight: 300;
+}
+.delivery-field{
+    
+    width: 100%;
+}
+.delivery-label{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--gray-2);
+    height: 5.6rem;
+    border-radius: 1.2rem;
+    gap: .3rem;
+    font-size: 1.6rem;
+    position: relative;
+    z-index: 5;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.delivery-input{
+    appearance: none;
+}
+.selected{
+    border: none;
+    background-color: var(--blue-3);
+    
+}
+.tool-tip-btn{
+    position: absolute;
+    top: .8rem;
+    right: .8rem;
+    color: white;
+}
+.tool-tip-wrapper{
+    max-width: 300px;
+    width: 100%;
+    position: absolute;
+    top: -100%;
+    right: 0;
+    background-color: var(--black-3);
+    text-align: center;
+    padding: .3rem .8rem;
+    border-radius: .64rem;
+    box-shadow: 0 0 1rem rgba(53, 173, 220, 0.156);
+    z-index: 10;
+    margin-top: -.8rem;
+}
+.tip-content{
+    font-size: 1.4rem;
+}
+.delivery-label:not(.selected):hover{
+border: none;
+}
+.tool-tip-btn:hover{
+    scale: 1.3;
+}

@@ -45,7 +45,7 @@ const cartReducer = (state, action) => {
 
   switch (action.type) {
     case "ADD_TO_CART":
-      const { productObj, quantity,openCart } = action.payload;
+      const { productObj, quantity, openCart } = action.payload;
 
       const itemIndex = getMatchedProductIndex(productObj.id);
 
@@ -65,7 +65,7 @@ const cartReducer = (state, action) => {
         isCartOpen: openCart,
       };
     case "TOGGLE_CART":
-      const{cartOpen} = action.payload;
+      const { cartOpen } = action.payload;
       return { ...state, isCartOpen: cartOpen };
 
     case "INCREMENT_QUANTITY":
@@ -102,7 +102,41 @@ const cartReducer = (state, action) => {
         ...state,
         cartItems: state.cartItems.filter((item) => item.id !== id),
       };
+    case "UPDATE_PERSONAL_DETAILS":
+      const { name, value } = action.payload;
+      return {
+        ...state,
+        personalDetails: {
+          ...state.personalDetails,
+          [name]: value,
+        },
+        isValid: {
+          ...state.isValid,
+          [name]: true,
+        },
+      };
+      case "UPDATE_DELIVERY":
+        return {
+          ...state,
+          delivery: {
+            method: action.payload.value,
+            cost:action.payload.cost
+          },
+        };
+        case "UPDATE_PAYMENT":
+        return {
+          ...state,
+          payment: action.payload.value,
+        };
 
+    case "SUBMIT_FORM":
+      const { isValid } = action.payload;
+      return {
+        ...state,
+        isValid: {
+          ...isValid,
+        },
+      };
     default:
       return state;
   }
@@ -130,14 +164,25 @@ function App() {
   const cartInitial = {
     cartItems: savedCart !== null ? JSON.parse(savedCart) : [],
     isCartOpen: false,
-    personalDetails:{
-      firstName:"",
-      lastName:"",
-      email:"",
-      phone:""
+    personalDetails: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
     },
-    delivery:"Same-day",
-    payment:"apple-pay"
+    isValid: {
+      firstName: true,
+      lastName: true,
+      email: true,
+      phone: true,
+    },
+    delivery: {
+      method:"standard",
+      cost:0
+    },
+    payment: "apple-pay",
+    confirmOrder:false,
+    
   };
   const [cartState, dispatchCart] = useReducer(cartReducer, cartInitial);
 

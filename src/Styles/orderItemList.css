@@ -2,12 +2,13 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  /* gap: 1.5rem; */
   margin-top: 5rem;
 }
 .order-item:not(:last-child) {
   border-bottom: 1px solid var(--gray-3);
   padding-bottom: 3rem;
+
 }
 .order-item {
   width: 100%;
@@ -15,6 +16,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
+  padding: 1.5rem 2rem;
 }
 .thumbnail-qty-wrapper {
   display: flex;
@@ -77,6 +79,45 @@
 .cart-price {
   color: var(--white);
   font-weight: 500;
+}
+
+.order-cost-summary{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray-1);
+  padding: 4rem 2rem;
+  border-radius:0 0 1.2rem 1.2rem ;
+  gap: 1.5rem;
+
+}
+.service-item{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.service-item:not(:last-child){
+  border-bottom: 1px solid #74747452;
+  padding-bottom: 1.5rem;
+}
+.service{
+  font-weight: 500;
+  color: white;
+  font-size: 1.4rem;
+}
+.value{
+  font-size: 1.6rem;
+}
+.service.total{
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+.value.total{
+  font-size: 2rem;
+  color: var(--blue-1);
+  font-weight: 800;
+
 }
 /* ACTIVE STATES */
 
