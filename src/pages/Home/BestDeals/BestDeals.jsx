@@ -31,7 +31,7 @@ function BestDeals() {
               </div>
               <div className="product-details-text">
                 <p className="product-brand">{product.brand}</p>
-                <h3 className="product-title">{product.title}</h3>
+                <h3 className="product-title">{product.title.split(' ').slice(0, 3).join(' ')}</h3>
                 <p className="new-price">
                 <span className="old-price">{`$${product.price}`}</span>
 

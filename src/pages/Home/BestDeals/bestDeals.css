@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--gray-1);
+  background: url("../../../assets/images/tab-bg.jpg") no-repeat center center / cover;
   border-radius: 1.5rem;
   padding: 3%;
   margin-top: 5%;
@@ -18,7 +18,11 @@
 
 }
 .deals-title {
-  font-size: clamp(3rem, 4vw, 5rem);
+  font-size: clamp(3rem, 4vw, 6rem);
+  background-clip: text;
+  background: url("../../../assets/images/text-bg.jpg") no-repeat center center / cover;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 .best-deals-grid {
   max-width: 1600px;
@@ -35,6 +39,7 @@
   border: 1px solid var(--gray-2);
   border-radius: 1.2rem 1.2rem 0 0;
   position: relative;
+  background-color: var(--black-2);
 
 }
 .top-tags{
@@ -83,7 +88,7 @@
   font-size: 1.3rem;
 }
 .product-title {
-  letter-spacing: 0.003rem;
+  letter-spacing: normal;
   font-size: 1.5rem;
   display: flex;
   flex-wrap: wrap;
@@ -96,6 +101,7 @@
   align-items: center;
   font-size: 2.5rem;
   font-weight: 600;
+  color: var(--blue-3);
 }
 
 .old-price{
@@ -126,8 +132,8 @@
 .product-link{
     height: 4.6rem;
     width: 90%;
-    border-radius: 3.2rem;
-    background-color: var(--blue-2);
+    border-radius: 1.2rem;
+    background-color: var(--blue-3);
     margin-bottom: 2rem;
     font-weight: 600;
     font-size: 1.8rem;

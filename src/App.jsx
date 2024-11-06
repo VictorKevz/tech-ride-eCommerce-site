@@ -21,16 +21,16 @@ const dataReducer = (state, action) => {
         ...state,
         [action.payload.category]: action.payload.data,
       };
-     case "OPEN_LIGHTBOX":
+    case "OPEN_LIGHTBOX":
       return {
         ...state,
-        isLightBoxOpen : true
-      }
-      case "CLOSE_LIGHTBOX":
+        isLightBoxOpen: true,
+      };
+    case "CLOSE_LIGHTBOX":
       return {
         ...state,
-        isLightBoxOpen : false
-      }
+        isLightBoxOpen: false,
+      };
     default:
       return state;
   }
@@ -273,6 +273,20 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(favoritesState));
     localStorage.setItem("cart", JSON.stringify(cartState.cartItems));
   }, [stateData, favoritesState, cartState.cartItems]);
+
+  useEffect(() => {
+    if (
+      cartState.confirmOrder ||
+      stateData.isLightBoxOpen 
+     
+    ) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => (document.body.style.overflow = "auto");
+  }, [cartState.confirmOrder, stateData.isLightBoxOpen]);
   return (
     <DataContext.Provider
       value={{
@@ -299,7 +313,7 @@ function App() {
         </Routes>
         {cartState.isCartOpen && <Cart />}
         {cartState.confirmOrder && <OrderConfirmation />}
-        <Footer/>
+        <Footer />
       </main>
     </DataContext.Provider>
   );
