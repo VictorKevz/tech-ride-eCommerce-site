@@ -1,6 +1,7 @@
 import { Check, ShoppingBag } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import "../CTA/cta.css";
+// import "../../Footer/footer.css"
 
 function CTA() {
   const [email, setEmail] = useState("");

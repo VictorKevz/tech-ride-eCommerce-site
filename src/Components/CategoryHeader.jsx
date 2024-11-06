@@ -4,7 +4,7 @@ import arrow from "../assets/images/arrow-down.gif";
 function CategoryHeader({ headerInfo }) {
   return (
     <section className="category-header-container">
-      <div
+      <header
         className="category-header"
         style={{ backgroundImage: `url(${headerInfo.bgImage})` }}
       >
@@ -13,13 +13,14 @@ function CategoryHeader({ headerInfo }) {
 
           <p className="header-parag">{headerInfo.parag}</p>
         </div>
-        <div className="header-overlay"></div>
+        {/* <div className="header-overlay"></div> */}
         <img
         src={arrow}
         alt="An arrow Icon pointing down"
         className="arrow-img"
       />
-      </div>
+      <div className="header-overlay"></div>
+      </header>
       
     </section>
   );

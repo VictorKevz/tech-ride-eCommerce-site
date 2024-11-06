@@ -9,9 +9,12 @@ function CategoryProductCard({ categoryData }) {
   return (
     <div className="product-card-grid">
       {categoryData.map((product, index) => {
-        const isLast = categoryData.length - 1 === index && categoryData.length % 2 !== 0 ;
+        const isLast =
+          categoryData.length - 1 === index && categoryData.length % 2 !== 0;
         const isSoldOut = product.stock === 0;
-        const isInFavorites = favoritesState.some((item) => item.id === product.id);
+        const isInFavorites = favoritesState.some(
+          (item) => item.id === product.id
+        );
 
         return (
           <div
@@ -27,7 +30,9 @@ function CategoryProductCard({ categoryData }) {
                 <button
                   type="button"
                   disabled={isSoldOut}
-                  className={`icon-wrapper like-btn ${isInFavorites && "in-cart"}`}
+                  className={`icon-wrapper like-btn ${
+                    isInFavorites && "in-cart"
+                  }`}
                   onClick={() => {
                     dispatchFavorites({ type: "ADD_TO_FAVORITES", product });
                   }}
@@ -40,7 +45,9 @@ function CategoryProductCard({ categoryData }) {
               </div>
               <div className="product-info">
                 <p className="product-brand">{product?.brand}</p>
-                <h3 className="product-title">{product?.title}</h3>
+                <h3 className="product-title">
+                  {product?.title.split(" ").slice(0, 3).join(" ")}
+                </h3>
                 <p className="product-price">${product?.price}</p>
               </div>
               <div className="extra-details">
@@ -48,11 +55,15 @@ function CategoryProductCard({ categoryData }) {
                   {product.rating}
                   <Star className="star" fontSize="large" />
                 </p>
-                <Link to={`/${product.category}/${product.title}`} className="product-link category">Order Now!</Link>
+                <Link
+                  to={`/${product.category}/${product.title}`}
+                  className="product-link category"
+                >
+                  Learn More
+                </Link>
                 <p className="icon-wrapper stock">
                   {product.stock}
                   <Inventory fontSize="large" />
-                  
                 </p>
               </div>
             </div>

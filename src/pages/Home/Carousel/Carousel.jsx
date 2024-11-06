@@ -1,31 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import arrowGif from "../../../assets/images/arrow-down.gif";
-
 import { carouselData } from "./carouselData";
 import "./carousel.css";
 
 function Carousel() {
   const [index, setIndex] = useState(1);
+  const [currentImgSrc, setCurrentImgSrc] = useState(
+    carouselData[index].imgSrc.desktop
+  );
   const { headingText, parag, imgSrc, path } = carouselData[index];
 
   useEffect(() => {
-    const startSlideInterval = () => {
-      return setInterval(() => {
-        setIndex((prevIndex) =>
-          prevIndex === carouselData.length - 1 ? 0 : prevIndex + 1
-        );
-      }, 3500);
+    const updateImageSrc = () => {
+      setCurrentImgSrc(
+        window.innerWidth <= 700 ? imgSrc.mobile : imgSrc.desktop
+      );
     };
 
-    const slideInterval = startSlideInterval();
+    updateImageSrc();
 
-    return () => clearInterval(slideInterval);
-  }, [index]);
+    const slideInterval = setInterval(() => {
+      setIndex((prevIndex) =>
+        prevIndex === carouselData.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000);
+
+    window.addEventListener("resize", updateImageSrc);
+
+    return () => {
+      clearInterval(slideInterval);
+      window.removeEventListener("resize", updateImageSrc);
+    };
+  }, [index, imgSrc.mobile, imgSrc.desktop]);
+
   return (
     <div
       className="carousel-wrapper"
-      style={{ backgroundImage: `url(${imgSrc})` }}
+      style={{ backgroundImage: `url(${currentImgSrc})` }}
     >
       <div className="home-text-wrapper">
         <h1 className="home-title">{headingText}</h1>
@@ -34,7 +46,6 @@ function Carousel() {
           Shop now
         </Link>
       </div>
-
       <div className="indicators-wrapper">
         {carouselData.map((indicator) => {
           const isActive = indicator.id === index;
@@ -50,7 +61,9 @@ function Carousel() {
       </div>
       <div className="gif-wrapper">
         <img src={arrowGif} alt="An animated arrow pointing down" />
-      </div>    </div>
+      </div>
+      <div className="slider-overlay"></div>
+    </div>
   );
 }
 

@@ -84,7 +84,7 @@
     grid-row: span 1;
     background-position-y: -250%;
   }
-  .smartphones,
+  .vehicle,
   .tablets {
     grid-column: span 2;
   }

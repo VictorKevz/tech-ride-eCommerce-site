@@ -69,17 +69,16 @@
   color: var(--white);
 }
 
-
-.toast-title{
-    font-size: 1.5rem;
-    background-color: #99dcadf1;
-    padding: 0.5rem;
-    margin-top: .5rem;
-    border-radius: .4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
+.toast-title {
+  font-size: 1.5rem;
+  background-color: #99dcadf1;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
 }
 .cta-input:focus,
 .cta-input:hover {
@@ -89,3 +88,5 @@
 .cta-field:focus {
   border: 1px var(--blue-3) solid;
 }
+
+
