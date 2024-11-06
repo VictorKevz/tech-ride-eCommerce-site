@@ -1,0 +1,47 @@
+.policies-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 6rem;
+}
+
+.policy-container{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-top: 5rem;
+
+    
+}
+.policy-item{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    border:1px solid var(--gray-1);
+    padding: 3rem 2rem;
+    border-radius: 1.2rem;
+    
+}
+.policy-text{
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 1rem;
+}
+.policy-icon-wrapper{
+    max-width: 600px;
+   position: relative;
+   background-color: var(--gray-2);
+   padding: 1rem;
+   border-radius: 50%;
+}
+.policy-icon{
+    width: 10rem;;
+}

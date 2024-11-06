@@ -183,7 +183,7 @@ function DetailsPage() {
           </ul>
         </div>
       </div>
-      <Tabs productObj={productObj} category={category} />
+      <Tabs productObj={productObj} category={category} images={images} />
       {stateData?.isLightBoxOpen && <LightBox images={images}/> }
       
     </section>

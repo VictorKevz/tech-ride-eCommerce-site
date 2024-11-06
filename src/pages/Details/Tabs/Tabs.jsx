@@ -3,8 +3,9 @@ import "../../../Styles/tabs.css";
 import illustration from "../../../assets/images/illustration.webp";
 import profile from "../../../assets/images/profile.png";
 import { Star } from "@mui/icons-material";
+import Policies from "./Policies/Policies";
 
-function Tabs({ productObj }) {
+function Tabs({ productObj, images }) {
   const [tab, setTab] = useState("Details");
   const tabsData = [
     {
@@ -62,10 +63,11 @@ function Tabs({ productObj }) {
             </article>
             <div className="tab-image-wrapper">
               <img
-                src={illustration}
+                src={images[images.length - 1]}
                 alt="Product Illustration Image"
                 className="details-img"
               />
+              <div className="tab-image-styled"></div>
             </div>
           </div>
         )}
@@ -138,7 +140,7 @@ function Tabs({ productObj }) {
             </div>
           </div>
         )}
-        {tab === "Policies" && <div className="policies-tab"></div>}
+        {tab === "Policies" && <Policies/>}
       </div>
     </section>
   );
