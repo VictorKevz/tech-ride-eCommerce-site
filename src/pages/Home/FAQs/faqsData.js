@@ -5,19 +5,7 @@ import returnIcon from "../../../assets/images/home/faqs/return.svg"
 import contactIcon from "../../../assets/images/home/faqs/contact.svg"
 
 export const faqsData = [
-    {
-        id: 1,
-        question: "What are your delivery options and costs?",
-        answer: {
-            subHeading: "Three delivery options at low cost",
-            options: [
-                "Standard Delivery: 5-7 days delivery (Free)",
-                "Express Delivery: 2-4 days delivery ($5 per item)",
-                "Same-day Delivery: within 24 hours delivery ($5 per item) - location restrictions apply",
-            ]
-        },
-        icon: deliveryIcon
-    },
+   
     {
         id: 2,
         question: "What payment methods do you accept?",
@@ -31,6 +19,19 @@ export const faqsData = [
             ]
         },
         icon: paymentIcon
+    },
+    {
+        id: 1,
+        question: "What are your delivery options and costs?",
+        answer: {
+            subHeading: "Three delivery options at low cost",
+            options: [
+                "Standard Delivery: 5-7 days delivery (Free)",
+                "Express Delivery: 2-4 days delivery ($5 per item)",
+                "Same-day Delivery: within 24 hours delivery ($5 per item) - location restrictions apply",
+            ]
+        },
+        icon: deliveryIcon
     },
     {
         id: 3,

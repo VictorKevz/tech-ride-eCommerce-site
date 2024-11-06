@@ -10,6 +10,7 @@ import Favorites from "./pages/Favorites/Favorites";
 import Cart from "./Components/Cart";
 import Checkout from "./pages/Checkout/Checkout";
 import OrderConfirmation from "./Components/OrderConfirmation";
+import Footer from "./Components/Footer/Footer";
 
 export const DataContext = createContext();
 
@@ -298,6 +299,7 @@ function App() {
         </Routes>
         {cartState.isCartOpen && <Cart />}
         {cartState.confirmOrder && <OrderConfirmation />}
+        <Footer/>
       </main>
     </DataContext.Provider>
   );
