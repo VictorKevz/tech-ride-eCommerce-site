@@ -13,7 +13,6 @@ function CategoryHeader({ headerInfo }) {
 
           <p className="header-parag">{headerInfo.parag}</p>
         </div>
-        {/* <div className="header-overlay"></div> */}
         <img
         src={arrow}
         alt="An arrow Icon pointing down"

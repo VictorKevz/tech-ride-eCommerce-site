@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
 import { DataContext } from "../App";
 import "../pages/Checkout/CheckoutForms/checkoutStyles/delivery.css";
-import { Tooltip } from "@mui/material";
-import { Help, InfoOutlined } from "@mui/icons-material";
+import { InfoOutlined } from "@mui/icons-material";
 function CheckoutOptionsSelector({
   title,
   optionsData,

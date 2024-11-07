@@ -55,7 +55,7 @@ function Navbar() {
     },
     {
       id: 2,
-      path: "/login",
+      path: "/#",
       text: "Login",
       icon: Person,
     },
@@ -90,7 +90,7 @@ function Navbar() {
         <ul className={`nav-links-wrapper ${navOpen && "open"}`}>
           {navData.map((link) => (
             <li key={link.id} className="nav-item">
-              <NavLink to={link.path} className="nav-link">
+              <NavLink to={link.path} className="nav-link" onClick={handleNav}>
                 {link.label}
               </NavLink>
             </li>

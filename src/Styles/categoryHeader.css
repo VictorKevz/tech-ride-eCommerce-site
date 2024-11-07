@@ -34,7 +34,7 @@
   z-index: 5;
 }
 .header-title {
-  font-size: clamp(3rem, 3vw, 8rem);
+  font-size: clamp(4rem, 3vw, 8rem);
   color: var(--blue-3);
 }
 .header-parag {

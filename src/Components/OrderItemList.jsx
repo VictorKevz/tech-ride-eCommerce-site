@@ -22,9 +22,9 @@ function OrderItemList() {
     <section className="order-items-wrapper">
       {cartState.cartItems.map((product) => {
         const isNameLong = product?.title.length > 25;
-        const productTitle = isNameLong
-          ? product.title.split(" ").slice(0, 3).join(" ")
-          : product.title;
+        const productTitle = 
+           product.title.split(" ").slice(0, 3).join(" ")
+          
 
         return (
           <div key={product.id} className="order-item">
