@@ -48,7 +48,7 @@ function DetailsPage() {
           className="details-link"
           to={`/${category}`}
         >{`${category} /`}</Link>
-        <p className="link-name">{productName}</p>
+        <p className="link-name">{productName.split(" ").slice(0,3).join(" ")}</p>
       </header>
       <div className="details-slider-info-wrapper">
         <DetailsImageSlider images={images} />

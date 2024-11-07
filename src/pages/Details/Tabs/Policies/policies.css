@@ -6,12 +6,16 @@
     flex-direction: column;
     margin-top: 6rem;
 }
-
+.tab-title.policy{
+    display: flex;
+    align-self: center;
+    text-align: center;
+}
 .policy-container{
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     align-items: flex-start;
-    justify-content: space-between;
     gap: 3rem;
     margin-top: 5rem;
 
@@ -34,6 +38,12 @@
     align-items: center;
     text-align: center;
     margin-top: 1rem;
+}
+.policy-title{
+    font-size: clamp(2rem,4vw,3.5rem);
+}
+.policy-parag{
+    font-size: 1.5rem;
 }
 .policy-icon-wrapper{
     max-width: 600px;

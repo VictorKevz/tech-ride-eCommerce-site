@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../../Styles/tabs.css";
-import illustration from "../../../assets/images/illustration.webp";
 import profile from "../../../assets/images/profile.png";
 import { Star } from "@mui/icons-material";
 import Policies from "./Policies/Policies";
@@ -45,29 +44,18 @@ function Tabs({ productObj, images }) {
             <article className="tab-text-wrapper">
               <h2 className="tab-title">{productObj?.title}</h2>
               <p className="tab-parag">{productObj?.description}</p>
-              <div className="dummy-holder">
-                <h3 className="dummy-title">Sub Heading</h3>
-                <p className="tab-parag">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Adipisci, eos eum, nostrum exercitationem iure porro quisquam
-                  necessitatibus, ad dolor aut assumenda voluptatibus
-                  accusantium alias. Culpa eos hic sint quam autem.
-                </p>
-                <p className="tab-parag">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Adipisci, eos eum, nostrum exercitationem iure porro quisquam
-                  necessitatibus, ad dolor aut assumenda voluptatibus
-                  accusantium alias. Culpa eos hic sint quam autem.
-                </p>
-              </div>
+              
             </article>
             <div className="tab-image-wrapper">
-              <img
-                src={images[images.length - 1]}
+              {images.slice(0,2).map((src,i)=>(
+                <img
+                key={i}
+                src={src}
                 alt="Product Illustration Image"
                 className="details-img"
               />
-              <div className="tab-image-styled"></div>
+              ))}
+              <div className="image-overlay"></div>
             </div>
           </div>
         )}
@@ -94,7 +82,7 @@ function Tabs({ productObj, images }) {
                 const formattedDate = `${year}-${month}-${day}`;
 
                 return (
-                  <div key={index} className="review-card">
+                  <div key={index} className={`review-card ${index === 2 && "last"}`}>
                     <header className="card-header">
                       <div className="profile-wrapper">
                         <img

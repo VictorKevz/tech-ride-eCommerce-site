@@ -33,7 +33,7 @@ function DetailsImageSlider({ images }) {
             <button
               key={i}
               type="button"
-              className={`navigation-img-btn ${isCurrent && "current"}`}
+              className={`navigation-img-btn ${isCurrent && "current"} ${!isOpen && "hide"}`}
               onClick={() => {
                 updateIndex(i);
               }}
@@ -49,7 +49,7 @@ function DetailsImageSlider({ images }) {
       </div>
       <div
         className={`main-image-wrapper ${isOpen && "lightbox"}`}
-        onClick={() => !isOpen && dispatchData({ type: "OPEN_LIGHTBOX" })}
+        
       >
         {!isOpen && <span className="add-sign">
           <Add fontSize="large"/>
@@ -58,25 +58,26 @@ function DetailsImageSlider({ images }) {
           src={images[index]}
           alt={`Main Image for Slide ${index + 1}`}
           className={`main-img ${isOpen && "lightbox"}`}
+          onClick={() => !isOpen && dispatchData({ type: "OPEN_LIGHTBOX" })}
         />
-        {isOpen && (
+        
           <button
             type="button"
-            className="prev navigation-btn"
+            className={`prev navigation-btn ${isOpen && "show"}`}
             onClick={prevSlide}
           >
             <ArrowBackIosNew fontSize="large" />
           </button>
-        )}
-        {isOpen && (
+        
+        
           <button
             type="button"
-            className="next navigation-btn"
+            className={`next navigation-btn ${isOpen && "show"}`}
             onClick={nextSlide}
           >
             <ArrowForwardIos fontSize="large" />
           </button>
-        )}
+        
       </div>
     </div>
   );
