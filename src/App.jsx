@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import "./App.css";
 import Navbar from "./Components/Navbar";
@@ -275,11 +276,7 @@ function App() {
   }, [stateData, favoritesState, cartState.cartItems]);
 
   useEffect(() => {
-    if (
-      cartState.confirmOrder ||
-      stateData.isLightBoxOpen 
-     
-    ) {
+    if (cartState.confirmOrder || stateData.isLightBoxOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -311,7 +308,9 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
-        {cartState.isCartOpen && <Cart />}
+        <AnimatePresence mode="wait">
+          {cartState.isCartOpen && <Cart />}
+        </AnimatePresence>
         {cartState.confirmOrder && <OrderConfirmation />}
         <Footer />
       </main>

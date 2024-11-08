@@ -6,6 +6,8 @@ import { DataContext } from "../../App";
 import PersonalDetails from "./CheckoutForms/PersonalDetails";
 import emptyCart from "../../assets/images/empty-cart.svg";
 import CheckoutForm from "./CheckoutForm";
+import { AnimatePresence,motion } from "framer-motion";
+import { detailsCheckoutVariants } from "../../Variants";
 
 function Checkout() {
   const { categories, cartState } = useContext(DataContext);
@@ -47,14 +49,30 @@ function Checkout() {
         </div>
       </header>
       <div className="check-out-container">
-        <article className="form-wrapper">
+      <AnimatePresence mode="wait">
+        <motion.article 
+        className="form-wrapper"
+        variants={detailsCheckoutVariants}
+        initial="hidden"
+        animate="visible"
+        custom="left"
+        >
           <h1 className="checkout-title">Checkout</h1>
           <p className="checkout-parag">
             Please provide your details to place your order!
           </p>
           <CheckoutForm />
-        </article>
-        <article className="order-summary-wrapper">
+        </motion.article>
+        </AnimatePresence>
+
+        <AnimatePresence mode="wait">
+        <motion.article 
+        className="order-summary-wrapper"
+        variants={detailsCheckoutVariants}
+        initial="hidden"
+        animate="visible"
+        custom="right"
+        >
           <header className="order-summary-header">
           <h2 className="checkout-title">Order Summary</h2>
           <p className="summary-parag">Review Your Cart before placing order!</p>
@@ -76,7 +94,8 @@ function Checkout() {
               <OrderItemList />
             </div>
           )}
-        </article>
+        </motion.article>
+        </AnimatePresence>
       </div>
     </section>
   );
