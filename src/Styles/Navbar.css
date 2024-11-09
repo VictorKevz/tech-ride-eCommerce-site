@@ -39,7 +39,7 @@
     position: relative;
 }
 
-.active::before{
+.active:not(.logo)::before{
     position: absolute;
     content: "";
     width: 100%;
