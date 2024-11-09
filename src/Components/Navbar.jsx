@@ -90,7 +90,7 @@ function Navbar() {
         <ul className={`nav-links-wrapper ${navOpen && "open"}`}>
           {navData.map((link) => (
             <li key={link.id} className="nav-item">
-              <NavLink to={link.path} className="nav-link" onClick={handleNav}>
+              <NavLink to={link.path} className="nav-link" activeClassName="active" onClick={handleNav}>
                 {link.label}
               </NavLink>
             </li>

@@ -49,7 +49,7 @@ function OrderItemList() {
               <div className="text-qty-wrapper">
                 <h2 className="cart-item-title">{productTitle}</h2>
                 <p className="brand cart">
-                  {product?.brand} / {product?.sku}
+                   {product?.sku}
                 </p>
                 <div className="qty-btn-wrapper cart">
                   <button

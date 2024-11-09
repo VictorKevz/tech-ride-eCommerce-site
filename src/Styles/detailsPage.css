@@ -280,6 +280,11 @@
   } 
   .navigation-btn {
     display: flex!important;
+    width: 3rem!important;
+    height: 3rem!important;
+  }
+  .arrow-icon{
+    scale: 0.8!important;
   }
   .tab-image-wrapper {
     display: flex!important;

@@ -53,7 +53,10 @@ export const cartVariants = {
 };
 
 export const detailsCheckoutVariants = {
-  hidden: (direction) => ({ opacity: 0, x: direction === "right" ? 50 : -50 }),
+  hidden: (direction) => ({
+    opacity: 0,
+    x: direction === "right" ? 100 : -100,
+  }),
   visible: {
     opacity: 1,
     x: 0,
@@ -65,3 +68,23 @@ export const detailsCheckoutVariants = {
     },
   },
 };
+
+export const sliderVariants = (direction) => (
+    {
+        hidden: { opacity: 0, x: direction === "left" ? -50 : 50 },
+        visible: {
+          opacity: 1,
+          x: 0,
+          transition: {
+            type: "tween",
+            ease: "easeInOut",
+            duration: 0.7,
+          },
+        },
+        exit: {
+          opacity: 0,
+          x: direction === "left" ? 30 : -30,
+          transition: { duration: 0.3, type: "tween", ease: "easeInOut" },
+        },
+      }
+);

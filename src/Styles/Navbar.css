@@ -36,6 +36,16 @@
 }
 .nav-link{
     width: fit-content;
+    position: relative;
+}
+
+.active::before{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: var(--blue-3);
+    bottom: -3.1rem;
 }
 .cart-favorites-login-wrapper{
     gap:0;
@@ -89,13 +99,13 @@ color: var(--blue-3);
     justify-content: space-between;
     top: 100%;
     left: 3.5%;
-    width: 95%;
+    width: 94%;
     padding: 4rem 3rem;
     background-color: var(--gray-3);
     box-shadow: 0 0 1rem rgba(16, 67, 92, 0.462);
     margin-top: .5rem;
     gap: 1.5rem;
-    border-radius: 1rem;
+    border-radius: .5rem;
  }
 
  .menu-btn{
@@ -137,6 +147,14 @@ color: var(--blue-3);
     display: none;
 
 
+}
+.active::before{
+   
+    right: -.5rem;
+    top: -1rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
 }
 .nav-links-wrapper.open{
     display: flex;

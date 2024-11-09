@@ -1,11 +1,20 @@
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
 import "../../../Styles/tabs.css";
 import profile from "../../../assets/images/profile.png";
 import { Star } from "@mui/icons-material";
 import Policies from "./Policies/Policies";
+import { sliderVariants } from "../../../Variants";
 
 function Tabs({ productObj, images }) {
   const [tab, setTab] = useState("Details");
+  const [direction, setDirection] = useState("left");
+
+  const updateTab = (currentTab) => {
+    setTab(currentTab)
+    setDirection(tab === "Details" ? "right": "left")
+  }
   const tabsData = [
     {
       id: 0,
@@ -31,29 +40,36 @@ function Tabs({ productObj, images }) {
               key={tabObj.id}
               type="button"
               className={`tab-btn ${isActive && "active-tab"}`}
-              onClick={() => setTab(tabObj.tabName)}
+              onClick={() => updateTab(tabObj.tabName)}
             >
               {tabObj.tabName}
             </button>
           );
         })}
       </header>
-      <div className="tab-info-wrapper">
+      <AnimatePresence mode="wait">
+      <motion.div
+        className="tab-info-wrapper"
+        key={tab}
+        variants={sliderVariants(direction)}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
         {tab === "Details" && (
           <div className="details-tab">
             <article className="tab-text-wrapper">
               <h2 className="tab-title">{productObj?.title}</h2>
               <p className="tab-parag">{productObj?.description}</p>
-              
             </article>
             <div className="tab-image-wrapper">
-              {images.slice(0,2).map((src,i)=>(
+              {images.slice(0, 2).map((src, i) => (
                 <img
-                key={i}
-                src={src}
-                alt="Product Illustration Image"
-                className="details-img"
-              />
+                  key={i}
+                  src={src}
+                  alt="Product Illustration Image"
+                  className="details-img"
+                />
               ))}
               <div className="image-overlay"></div>
             </div>
@@ -82,7 +98,10 @@ function Tabs({ productObj, images }) {
                 const formattedDate = `${year}-${month}-${day}`;
 
                 return (
-                  <div key={index} className={`review-card ${index === 2 && "last"}`}>
+                  <div
+                    key={index}
+                    className={`review-card ${index === 2 && "last"}`}
+                  >
                     <header className="card-header">
                       <div className="profile-wrapper">
                         <img
@@ -128,8 +147,9 @@ function Tabs({ productObj, images }) {
             </div>
           </div>
         )}
-        {tab === "Policies" && <Policies/>}
-      </div>
+        {tab === "Policies" && <Policies />}
+      </motion.div>
+      </AnimatePresence>
     </section>
   );
 }
