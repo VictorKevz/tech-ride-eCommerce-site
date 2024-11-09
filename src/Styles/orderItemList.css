@@ -57,11 +57,17 @@
 .brand.cart {
   font-size: 1.4rem;
 }
-.qty-btn-wrapper.cart {
-  height: 4.6rem;
-  margin-top: 1rem;
-  max-width:120px!important;
-  width: 100%;
+.cart-qty-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.3rem;
+  padding: 0 1.2rem;
+  width: 120px;
+  border: 1px solid var(--gray-2);
+  background-color: var(--gray-3);
+  border-radius: 2.2rem;
+  margin-top: .5rem;
 }
 .price-delete-wrapper {
   display: flex;

@@ -51,7 +51,7 @@ function OrderItemList() {
                 <p className="brand cart">
                    {product?.sku}
                 </p>
-                <div className="qty-btn-wrapper cart">
+                <div className="cart-qty-btn-wrapper">
                   <button
                     type="button"
                     className="qty-btn"

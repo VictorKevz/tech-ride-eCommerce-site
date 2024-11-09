@@ -25,29 +25,25 @@ export const productCardVariants = {
 };
 
 export const cartVariants = {
-  hidden: { opacity: 0, y: "-100%", scale: 0.7 },
+  hidden: { opacity: 0, y: "-100%" },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
+    
     transition: {
       type: "tween",
-      delay: 0.1,
       ease: "easeInOut",
-      duration: 0.7,
+      duration: 0.6,
     },
   },
   exit: {
-    opacity: 0.1,
+    opacity: 0,
     y: "-100%",
-
     transition: {
-      type: "spring",
+      type: "tween",
       delay: 0.25,
-      stiffness: 300,
-      damping: 25,
-      mass: 0.1,
-      duration: 0.7,
+   
+      duration: 0.5,
     },
   },
 };

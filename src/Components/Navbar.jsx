@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   Close,
   KeyboardArrowDown,
@@ -12,9 +13,10 @@ import {
 import { NavLink, Link } from "react-router-dom";
 import "../Styles/Navbar.css";
 import { DataContext } from "../App";
+import { cartVariants } from "../Variants";
 
 function Navbar() {
-  const { favoritesState,cartState,dispatchCart } = useContext(DataContext);
+  const { favoritesState, cartState, dispatchCart } = useContext(DataContext);
   const [navOpen, setNav] = useState(false);
   const [menuOpen, setMenu] = useState(false);
   const navData = [
@@ -64,8 +66,9 @@ function Navbar() {
   const handleMenu = (currentText) => {
     setMenu(!menuOpen);
     setNav(false);
-    currentText === "Cart" ? dispatchCart({type:"TOGGLE_CART",payload:{cartOpen:true}}) : null
-
+    currentText === "Cart"
+      ? dispatchCart({ type: "TOGGLE_CART", payload: { cartOpen: true } })
+      : null;
   };
   const handleNav = () => {
     setNav(!navOpen);
@@ -87,32 +90,80 @@ function Navbar() {
       </div>
 
       <nav className="nav-container">
-        <ul className={`nav-links-wrapper ${navOpen && "open"}`}>
+        <ul
+          key={navOpen}
+          className={`nav-links-wrapper desktop ${navOpen && "open"}`}
+        >
           {navData.map((link) => (
             <li key={link.id} className="nav-item">
-              <NavLink to={link.path} className="nav-link" activeClassName="active" onClick={handleNav}>
+              <NavLink
+                to={link.path}
+                className="nav-link"
+                activeClassName="active"
+                onClick={handleNav}
+              >
                 {link.label}
               </NavLink>
             </li>
           ))}
         </ul>
+
+        <AnimatePresence>
+          <motion.ul
+            key={navOpen}
+            className={`nav-links-wrapper mobile ${navOpen && "open"}`}
+            variants={cartVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            {navData.map((link) => (
+              <li key={link.id} className="nav-item">
+                <NavLink
+                  to={link.path}
+                  className="nav-link"
+                  activeClassName="active"
+                  onClick={handleNav}
+                >
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
+          </motion.ul>
+        </AnimatePresence>
       </nav>
 
       {/* Section for far right icons */}
-      <div className={`cart-favorites-login-wrapper ${menuOpen && "open"}`}>
-        {menuData.map((item) => (
-          <Link key={item.id} to={item.path} className="menu-icon-link" onClick={()=> handleMenu(item.text)}>
-            <item.icon fontSize="large" className="menu-icon" />
-            {item.text}
-            {favoritesState.length > 0 && item.text === "Favorites" && (
-              <span className="num fav-nav">{favoritesState.length}</span>
-            )}
-            {cartState.cartItems.length > 0 && item.text === "Cart" && (
-              <span className="num cart-nav">{cartState.cartItems.length}</span>
-            )}
-          </Link>
-        ))}
-      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={menuOpen}
+          className={`cart-favorites-login-wrapper ${menuOpen && "open"}`}
+          variants={cartVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+          {menuData.map((item) => (
+            <Link
+              key={item.id}
+              to={item.path}
+              className="menu-icon-link"
+              onClick={() => handleMenu(item.text)}
+            >
+              <item.icon fontSize="large" className="menu-icon" />
+              {item.text}
+              {favoritesState.length > 0 && item.text === "Favorites" && (
+                <span className="num fav-nav">{favoritesState.length}</span>
+              )}
+              {cartState.cartItems.length > 0 && item.text === "Cart" && (
+                <span className="num cart-nav">
+                  {cartState.cartItems.length}
+                </span>
+              )}
+            </Link>
+          ))}
+        </motion.div>
+      </AnimatePresence>
       <button type="button" className={`menu-btn`} onClick={handleMenu}>
         <Widgets fontSize="large" />
         {menuOpen ? (
