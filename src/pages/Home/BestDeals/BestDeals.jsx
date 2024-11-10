@@ -51,6 +51,7 @@ function BestDeals() {
             </div>
           ))}
         </div>
+        <div className="overlay"></div>
       </div>
     </section>
   );

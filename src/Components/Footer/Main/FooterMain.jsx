@@ -2,6 +2,7 @@ import React from "react";
 import { Facebook, Instagram, X } from "@mui/icons-material";
 import { footerLinks } from "./footerLinksData";
 import "../Main/footerMain.css"
+import { ul } from "framer-motion/client";
 function FooterMain() {
   return (
     <section className="footer-main-wrapper">
@@ -44,7 +45,9 @@ function FooterMain() {
             <li key={obj.id} className="link-heading">
               <h2 className="category">{obj.category}</h2>
               {obj.links.map((link,i) => (
-                <li key={i} className="footer-link">{link.name}</li>
+                <ul key={i} className="footer-link">
+                  <li  className="footer-link">{link.name}</li>
+                </ul>
               ))}
             </li>
           );

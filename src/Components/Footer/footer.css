@@ -1,50 +1,57 @@
-.footer-wrapper{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 5rem;
-    background-color: var(--gray-4);
+.footer-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  background-color: var(--gray-4);
 }
 
-@media (max-width:960px) {
-
-    .footer-wrapper{
-align-items: center;
-justify-content: center;
-    }
-    .CTA-wrapper,.icon-info-wrapper,.footer-links,.footer-main-wrapper {
-      flex-direction: column;
-      
-    }
-    .icon-info-wrapper{
-        align-items: center;
-        text-align: center;
-    }
-    .cta-parag{
-        font-size: 1.6rem;
-    }
-    .footer-main-wrapper{
-        align-items: center;
-        justify-content: center;
-    }
-    .footer-links{
-        max-width: none;
-        width: fit-content;
-       
-        gap: 4rem;
-    }
-    .link-heading,.logo-socials-wrapper{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .logo-socials-wrapper{
-        margin-right: 0;
-        align-self: center;
-        text-align: center;
-        margin-block: 5rem;
-    }
-    .footer-parag{
-        margin: .6rem auto;
-    }
+@media (max-width: 960px) {
+  .footer-wrapper {
+    align-items: center;
+    justify-content: center;
   }
+  .CTA-wrapper,
+  .icon-info-wrapper,
+  .footer-links,
+  .footer-main-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .icon-info-wrapper {
+    align-items: center;
+    text-align: center;
+  }
+  .cta-parag {
+    font-size: 1.6rem;
+  }
+  .footer-main-wrapper {
+    align-items: center;
+    justify-content: center!important;
+    justify-content: center!important;
+
+  }
+  .footer-links {
+    max-width: none;
+    width: fit-content;
+
+    gap: 4rem;
+    margin-top: 4rem;
+
+  }
+  .link-heading,
+  .logo-socials-wrapper {
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+  }
+  .logo-socials-wrapper {
+    width: 100%;
+  }
+  .footer-parag {
+    margin: 0.6rem auto!important;
+    font-size: 1.8rem!important;
+    max-width: 600px!important;
+    text-align: center!important;
+  }
+}

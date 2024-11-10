@@ -8,6 +8,10 @@
 }
 .title-category {
   font-size: clamp(3rem, 4vw, 8rem);
+  background-clip: text;
+  background: url("../../../assets/images/text-bg.jpg") no-repeat center center / cover;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 .category-grid {
   margin-top: 8vh;
@@ -61,6 +65,7 @@
 .category-title {
   font-size: clamp(2rem, 2vw, 3.5rem);
   font-weight: 400;
+  
 }
 .category-link {
   width: clamp(5rem, 4vw, 8rem);
