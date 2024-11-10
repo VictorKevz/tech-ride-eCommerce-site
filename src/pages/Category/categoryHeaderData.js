@@ -13,21 +13,21 @@ export const categoryHeaderData = {
     bgImage: { desktop: motorcycles, mobile: motorcyclesMobile },
     heading: "Motorcycles",
     parag:
-      "Explore our selection of motorcycles, from sport bikes to adventure models.",
+      "Embrace the freedom of the open road with our dynamic range of motorcycles, each designed for exceptional performance and style. With models built for speed, adventure, or city commuting, there’s a bike to suit every rider's needs.",
   },
   vehicle: {
     bgImage: { desktop: car, mobile: carMobile },
     heading: "Super Cars",
-    parag: "Discover the latest smartphones with cutting-edge technology.",
+    parag: "Experience the thrill of driving with our premium selection of cars, crafted to deliver unmatched performance and comfort. From cutting-edge technology to luxurious interiors, these vehicles are built to elevate every journey.",
   },
   tablets: {
     bgImage: { desktop: tablets, mobile: tabletsMobile },
     heading: "Tablets",
-    parag: "Find the perfect tablet for work, play, or both.",
+    parag: "Explore a variety of tablets that blend functionality with portability, making them ideal for both personal and professional use. Featuring high-resolution displays and fast processors, these devices are perfect for streaming, sketching, or staying productive on the go.",
   },
   laptops: {
     bgImage: { desktop: laptops, mobile: laptopsMobile },
     heading: "Laptops",
-    parag: "Browse our range of high-performance laptops.",
+    parag: "Our range of powerful laptops designed to meet the demands of work, gaming, and creative pursuits. Equipped with the latest processors, crisp displays, and ample storage, these machines handle multitasking effortlessly.",
   },
 };
