@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import { DataContext } from "../App";
 import { AnimatePresence, motion } from "framer-motion";
 import { productCardVariants } from "../Variants";
+
 function CategoryProductCard({ categoryData }) {
   const { dispatchFavorites, favoritesState } = useContext(DataContext);
+
   return (
     <div className="product-card-grid">
       {categoryData.map((product, index) => {
@@ -19,7 +21,7 @@ function CategoryProductCard({ categoryData }) {
 
         return (
           <AnimatePresence mode="wait" key={product.id}>
-            <motion.div
+            <motion.article
               className={`product-item ${isLast && "last-item"}`}
               variants={productCardVariants}
               initial="hidden"
@@ -31,11 +33,13 @@ function CategoryProductCard({ categoryData }) {
               <div
                 className={`product-bg-image ${isLast && "last-item"}`}
                 style={{ backgroundImage: `url(${product?.images[0]})` }}
+                alt={`Image of ${product.title}`}
               ></div>
               <div className="product-text">
                 <div className="like-stock-wrapper">
                   <button
                     type="button"
+                    aria-label={`Add ${product.title} to favorites`}
                     disabled={isSoldOut}
                     className={`icon-wrapper like-btn ${
                       isInFavorites && "in-cart"
@@ -52,34 +56,33 @@ function CategoryProductCard({ categoryData }) {
                 </div>
                 <div className="product-info">
                   <p className="product-brand">{product?.brand}</p>
-                  <h3 className="product-title">
-                    {product?.title.split(" ").slice(0, 3).join(" ")}
-                  </h3>
+                  <h3 className="product-title">{product?.title.split(" ").slice(0, 3).join(" ")}</h3>
                   <p className="product-price">${product?.price}</p>
                 </div>
                 <div className="extra-details">
-                  <p className="rating icon-wrapper">
+                  <p className="rating icon-wrapper" aria-label={`Rating: ${product.rating} stars`}>
                     {product.rating}
                     <Star className="star" fontSize="large" />
                   </p>
                   <Link
                     to={`/${product.category}/${product.title}`}
                     className="product-link category"
+                    aria-label={`Learn more about ${product.title}`}
                   >
                     Learn More
                   </Link>
-                  <p className="icon-wrapper stock">
+                  <p className="icon-wrapper stock" aria-label={`${product.stock} items in stock`}>
                     {product.stock}
                     <Inventory fontSize="large" />
                   </p>
                 </div>
               </div>
               {isSoldOut && (
-                <div className="sold-out-overlay">
+                <div className="sold-out-overlay" aria-live="assertive">
                   <h4 className="sold-text">SOLD OUT!</h4>
                 </div>
               )}
-            </motion.div>
+            </motion.article>
           </AnimatePresence>
         );
       })}

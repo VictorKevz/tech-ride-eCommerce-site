@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import FocusTrap from "focus-trap-react";
 import empty from "../../assets/images/empty-fav.svg";
 import { ThumbDown } from "@mui/icons-material";
 import { Link } from "react-router-dom";

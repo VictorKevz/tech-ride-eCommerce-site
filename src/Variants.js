@@ -84,3 +84,27 @@ export const sliderVariants = (direction) => (
         },
       }
 );
+
+export const categoryPageVariants = {
+  hidden: { opacity: 0, y: -100 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    
+    transition: {
+      type: "tween",
+      ease: "easeInOut",
+      duration: 0.6,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: "-50%",
+    transition: {
+      type: "tween",
+      
+   
+      duration: 0.3,
+    },
+  },
+};

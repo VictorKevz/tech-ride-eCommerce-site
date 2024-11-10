@@ -9,7 +9,7 @@ function CategoryPage() {
   const { category } = useParams();
   const { stateData } = useContext(DataContext);
 
-  const headerInfo = categoryHeaderData?.[category] || {
+  const headerInfo = categoryHeaderData[category] || {
     heading: "Category Not Found",
     parag: "The category you're looking for doesn't exist.",
   };;

@@ -70,26 +70,34 @@ function Navbar() {
       ? dispatchCart({ type: "TOGGLE_CART", payload: { cartOpen: true } })
       : null;
   };
+
   const handleNav = () => {
     setNav(!navOpen);
     setMenu(false);
   };
+
   return (
-    <header className="header-wrapper">
+    <header className="header-wrapper" role="banner">
       <div className="logo-toggle-container">
-        <button type="button" className="nav-toggle-btn" onClick={handleNav}>
+        <button
+          type="button"
+          className="nav-toggle-btn"
+          onClick={handleNav}
+          aria-label={navOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={navOpen}
+        >
           {navOpen ? (
-            <Close fontSize="large" className="close-icon" />
+            <Close fontSize="large" className="close-icon" aria-hidden="true" />
           ) : (
-            <MenuOpen fontSize="large" />
+            <MenuOpen fontSize="large" aria-hidden="true" />
           )}
         </button>
-        <NavLink to="/" className="logo">
+        <NavLink to="/" className="logo" aria-label="Home page - TECH & RIDE">
           TECH & RIDE
         </NavLink>
       </div>
 
-      <nav className="nav-container">
+      <nav className="nav-container" aria-label="Primary navigation">
         <ul
           key={navOpen}
           className={`nav-links-wrapper desktop ${navOpen && "open"}`}
@@ -101,6 +109,7 @@ function Navbar() {
                 className="nav-link"
                 activeClassName="active"
                 onClick={handleNav}
+                aria-label={`Go to ${link.label}`}
               >
                 {link.label}
               </NavLink>
@@ -116,14 +125,17 @@ function Navbar() {
             initial="hidden"
             animate="visible"
             exit="exit"
+            role="menu"
+            aria-label="Mobile navigation menu"
           >
             {navData.map((link) => (
-              <li key={link.id} className="nav-item">
+              <li key={link.id} className="nav-item" role="menuitem">
                 <NavLink
                   to={link.path}
                   className="nav-link"
                   activeClassName="active"
                   onClick={handleNav}
+                  aria-label={`Go to ${link.label}`}
                 >
                   {link.label}
                 </NavLink>
@@ -133,7 +145,6 @@ function Navbar() {
         </AnimatePresence>
       </nav>
 
-      {/* Section for far right icons */}
       <AnimatePresence mode="wait">
         <motion.div
           key={menuOpen}
@@ -142,6 +153,8 @@ function Navbar() {
           initial="hidden"
           animate="visible"
           exit="exit"
+          aria-label="User menu options"
+          role="menu"
         >
           {menuData.map((item) => (
             <Link
@@ -149,14 +162,22 @@ function Navbar() {
               to={item.path}
               className="menu-icon-link"
               onClick={() => handleMenu(item.text)}
+              aria-label={`Open ${item.text}`}
+              role="menuitem"
             >
-              <item.icon fontSize="large" className="menu-icon" />
-              {item.text}
+              <item.icon
+                fontSize="large"
+                className="menu-icon"
+                aria-hidden="true"
+              />
+              <span>{item.text}</span>
               {favoritesState.length > 0 && item.text === "Favorites" && (
-                <span className="num fav-nav">{favoritesState.length}</span>
+                <span className="num fav-nav" aria-label={`You have ${favoritesState.length} favorite items`}>
+                  {favoritesState.length}
+                </span>
               )}
               {cartState.cartItems.length > 0 && item.text === "Cart" && (
-                <span className="num cart-nav">
+                <span className="num cart-nav" aria-label={`You have ${cartState.cartItems.length} items in your cart`}>
                   {cartState.cartItems.length}
                 </span>
               )}
@@ -164,16 +185,21 @@ function Navbar() {
           ))}
         </motion.div>
       </AnimatePresence>
-      <button type="button" className={`menu-btn`} onClick={handleMenu}>
-        <Widgets fontSize="large" />
+      
+      <button
+        type="button"
+        className={`menu-btn`}
+        onClick={handleMenu}
+        aria-label={menuOpen ? "Close user menu" : "Open user menu"}
+        aria-expanded={menuOpen}
+      >
+        <Widgets fontSize="large" aria-hidden="true" />
         {menuOpen ? (
-          <KeyboardArrowUp fontSize="large" />
+          <KeyboardArrowUp fontSize="large" aria-hidden="true" />
         ) : (
-          <KeyboardArrowDown fontSize="large" />
+          <KeyboardArrowDown fontSize="large" aria-hidden="true" />
         )}
       </button>
-
-      {/* <div className={`nav-overlay ${navOpen && "show"}`}></div> */}
     </header>
   );
 }

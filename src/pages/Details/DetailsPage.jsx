@@ -23,7 +23,7 @@ import { detailsCheckoutVariants } from "../../Variants";
 function DetailsPage() {
   const [quantity, setQuantity] = useState(1);
   const { category, productName } = useParams();
-  const { stateData, cartState, dispatchCart } = useContext(DataContext);
+  const { stateData, dispatchCart } = useContext(DataContext);
 
   const productObj = stateData?.[category].find(
     (product) => product.title === productName
@@ -105,14 +105,16 @@ function DetailsPage() {
                     type="button"
                     className="qty-btn"
                     onClick={decrementQuantity}
+                    aria-label="Decrease quantity"
                   >
                     <Remove fontSize="large" />
                   </button>
-                  <span className="qty-num">{quantity}</span>
+                  <span className="qty-num" aria-label={`Quantity is ${quantity}`}>{quantity}</span>
                   <button
                     type="button"
                     className="qty-btn"
                     onClick={incrementQuantity}
+                    aria-label="Increase quantity"
                   >
                     <Add fontSize="large" />
                   </button>
@@ -127,6 +129,7 @@ function DetailsPage() {
                     });
                     setQuantity(1);
                   }}
+                  aria-label={`Add ${productObj?.title} to cart`}
                 >
                   <ShoppingBag fontSize="large" /> Add To Cart
                 </button>
@@ -141,6 +144,7 @@ function DetailsPage() {
                   });
                   setQuantity(1);
                 }}
+                aria-label={`Add ${productObj?.title} to cart and go to the checkout page`}
               >
                 Buy Now
               </Link>
