@@ -32,7 +32,6 @@ function Cart() {
     return () => document.removeEventListener("keydown", handleEscKey);
   }, [handleCloseCart]);
 
- // Set initial focus to the close button when the cart opens
  useEffect(() => {
   if (cartState.cartOpen && closeButtonRef.current) {
     closeButtonRef.current.focus();
@@ -93,7 +92,9 @@ function Cart() {
             </div>
           )}
         </motion.section>
-        </FocusTrap>
+        
+      
+      </FocusTrap>
       <div
         className="cart-mask"
         aria-hidden="true"
